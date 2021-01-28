@@ -15,5 +15,8 @@ RUN pip install -r requirements.txt
 EXPOSE 8000
 ENTRYPOINT ["python"]
 
+#Adding a user
+RUN useradd −u 8877 anthony-nonroot 
+USER anthony-nonroot
 # start the app.py file 
 CMD ["run.py"]
