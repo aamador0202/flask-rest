@@ -1,0 +1,21 @@
+apiVersion:  networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: qa-ingress
+spec:
+  tls:
+    - secretName: qa-flask-app-com-tls
+      hosts:
+        - qa.flask-app.com
+  rules:
+    - host: qa.flask-app.com
+      http:
+        paths:
+          - pathType: ImplementationSpecific
+            backend:
+              service:
+                name: qa-service
+                port:
+                  number: 80
+
+

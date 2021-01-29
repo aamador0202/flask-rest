@@ -1,0 +1,21 @@
+apiVersion:  networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: dev-ingress
+spec:
+  tls:
+    - secretName: dev-flask-app-com-tls
+      hosts:
+        - dev.flask-app.com
+  rules:
+    - host: dev.flask-app.com
+      http:
+        paths:
+          - pathType: ImplementationSpecific
+            backend:
+              service:
+                name: dev-service
+                port:
+                  number: 80
+
+
