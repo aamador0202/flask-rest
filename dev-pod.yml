@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: dev-pod
+  labels:
+    name: dev
+    app: flask-rest
+spec:
+  volumes:
+    - name: pv-storage
+      persistentVolumeClaim:
+        claimName: pv-claim
+  containers:
+    - name: docker-image
+      image: anthony0202/flask-rest:latest
+      ports:
+        - containerPort: 80
+    
+      volumeMounts:
+        - mountPath: "/app/local"
+          name: pv-storage

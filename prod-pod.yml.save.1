@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: prod-pod
+  labels:
+    name: prod
+    app: flask-rest
+spec:
+  volumes:
+    - name: pv-storage
+      persistentVolumeClaim:
+	claimName: pv-cl
+  containers:
+    - name: docker-image
+      image: anthony0202/flask-rest:latest
+      ports:
+        - containerPort: 80
