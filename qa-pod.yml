@@ -16,7 +16,9 @@ spec:
       image: anthony0202/flask-rest:latest
       ports:
         - containerPort: 80
-    
+      securityContext:
+        runAsUser: 1000
+        allowPrivilegeEscalation: false
       volumeMounts:
         - mountPath: "/app/local"
           name: pv-storage
