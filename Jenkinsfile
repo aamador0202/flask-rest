@@ -64,23 +64,8 @@ kubectl apply -f qa-ingress.yml
       }
     }
 
-    stage('Shell script 2') {
-      steps {
-        sh 'sleep 1m'
-      }
-    }
-
-    stage('Shell script 3') {
-      steps {
-        sh '''#Erasing services for rebuilds
-kubectl config use-context qa ;
-kubectl delete service qa-service ;
-kubectl config use-context dev ;
-kubectl delete service dev-service ;
-kubectl config use-context prod ;
-kubectl delete service prod-service ;'''
-      }
-    }
-
+  }
+  triggers {
+    pollSCM('* * * * *')
   }
 }
