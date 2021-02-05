@@ -4,11 +4,10 @@ metadata:
     name: prod-service
 
 spec:
-    type: NodePort
+    type: ClusterIP
     ports:
         - targetPort: 8000
           port: 80
-          nodePort: 30000
     selector:
        name: prod
        app: flask-rest
